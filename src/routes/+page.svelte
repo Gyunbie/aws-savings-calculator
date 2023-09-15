@@ -1,6 +1,7 @@
 <script lang="ts">
+	import Autocomplete from '$lib/components/Autocomplete.svelte';
+	import ProductTypes from '$lib/components/ProductTypes.svelte';
 	import type { PageData } from './$types';
-	import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
 
 	export let data: PageData;
 
@@ -15,21 +16,11 @@
 	let productType: string = productTypes[0];
 
 	const instanceFamilies = savingsData.map((savings) => savings.instance_family);
-	const regions = new Set(savingsData.map((savings) => savings.region));
+	const regions = Array.from(new Set(savingsData.map((savings) => savings.region))).sort();
 </script>
 
-<div>
-	<ListBox>
-		{#each productTypes as type}
-			<ListBoxItem bind:group={productType} name={type} value={type}>
-				{type}
-			</ListBoxItem>
-		{/each}
-	</ListBox>
+<div class="space-y-10 p-10">
+	<ProductTypes {productTypes} />
 
-	<select>
-		{#each regions as region}
-			<option value={region}>{region}</option>
-		{/each}
-	</select>
+	<Autocomplete options={regions} />
 </div>

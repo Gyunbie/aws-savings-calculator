@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	@apply bg-zinc-50 font-montserrat;
+}
+
+input {
+	@apply focus:outline-none;
+}

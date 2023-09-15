@@ -1,14 +1,17 @@
-import type { Config } from 'tailwindcss';
-
-const config = {
+module.exports = {
 	darkMode: 'class',
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		extend: {}
+		extend: {
+			fontFamily: {
+				montserrat: 'Montserrat, sans-serif'
+			},
+			colors: {
+				primary: '#ff92fa'
+			}
+		}
 	},
 
 	plugins: []
-} satisfies Config;
-
-export default config;
+};
