@@ -93,7 +93,7 @@
 
 <div>
 	<div class="min-h-screen p-8 md:p-20 xl:px-0 flex flex-col justify-center items-center">
-		<div class="space-y-16 w-full">
+		<div class="space-y-10 w-full">
 			<Hero />
 
 			<form class="grid md:grid-cols-2 gap-6" on:submit={handleSubmit}>
