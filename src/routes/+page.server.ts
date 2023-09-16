@@ -2,26 +2,7 @@ import Papa from 'papaparse';
 
 import { SAVINGS_DATA_URL } from '$lib/constants/links';
 import type { PageServerLoad } from './$types';
-
-type SavingData = {
-	instance_family: string;
-	instance_type: string;
-	product_description: string;
-	tenancy: string;
-	region: string;
-	offering_id: string;
-	payment_option: string;
-	plan_type: string;
-	duration_seconds: number;
-	currency: string;
-	plan_description: string;
-	rate: number;
-	unit: string;
-	product_type: string;
-	service_code: string;
-	usage_type: string;
-	operation: string;
-};
+import type { SavingData } from '$lib/types/aws';
 
 type PapaParseData = {
 	data: SavingData[];

@@ -5,10 +5,13 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				montserrat: 'Montserrat, sans-serif'
+				montserrat: 'Montserrat, sans-serif',
+				'space-grotesk': "'Space Grotesk', sans-serif"
 			},
 			colors: {
-				primary: '#ff92fa'
+				primary: '#ff92fa',
+				'primary-dark': '#ff5af7',
+				bg: '#1c1e26'
 			}
 		}
 	},
