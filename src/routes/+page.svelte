@@ -106,18 +106,6 @@
 					/>
 				</div>
 
-				<!-- Instance Family -->
-				<!-- Only exists in 'EC2' instances -->
-				{#if userInput.productType === 'EC2'}
-					<div class="col-span-full grid md:grid-cols-2 gap-6">
-						<Autocomplete
-							label="Instance Family"
-							options={parsedData.instanceFamilies}
-							select={(option) => handleSelect(option, 'instanceFamily')}
-						/>
-					</div>
-				{/if}
-
 				<!-- Region -->
 				<Autocomplete
 					label="Region"
@@ -131,6 +119,18 @@
 					options={parsedData.savingsPlans}
 					select={(option) => handleSelect(option, 'savingsPlan')}
 				/>
+
+				<!-- Instance Family -->
+				<!-- Only exists in 'EC2' instances -->
+				{#if userInput.productType === 'EC2'}
+					<div class="col-span-full grid md:grid-cols-2 gap-6">
+						<Autocomplete
+							label="Instance Family"
+							options={parsedData.instanceFamilies}
+							select={(option) => handleSelect(option, 'instanceFamily')}
+						/>
+					</div>
+				{/if}
 
 				<!-- Service -->
 				<Autocomplete
