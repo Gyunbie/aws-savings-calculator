@@ -92,11 +92,11 @@
 </script>
 
 <div>
-	<div class="h-screen p-20 xl:px-0 flex flex-col justify-center items-center">
+	<div class="min-h-screen p-8 md:p-20 xl:px-0 flex flex-col justify-center items-center">
 		<div class="space-y-16 w-full">
 			<Hero />
 
-			<form class="grid grid-cols-2 gap-6" on:submit={handleSubmit}>
+			<form class="grid md:grid-cols-2 gap-6" on:submit={handleSubmit}>
 				<!-- Product Type -->
 				<div class="col-span-full">
 					<ProductTypes
@@ -109,7 +109,7 @@
 				<!-- Instance Family -->
 				<!-- Only exists in 'EC2' instances -->
 				{#if userInput.productType === 'EC2'}
-					<div class="col-span-full grid grid-cols-2 gap-6">
+					<div class="col-span-full grid md:grid-cols-2 gap-6">
 						<Autocomplete
 							label="Instance Family"
 							options={parsedData.instanceFamilies}
@@ -154,8 +154,9 @@
 						type="number"
 						name="hours"
 						id="hours"
-						class="w-full h-10 rounded-xl bg-zinc-700 px-4 py-1 text-zinc-50 focus:ring-2 focus:ring-primary focus:ring-opacity-30 transition duration-200"
+						class="w-full h-10 rounded-xl bg-zinc-700 px-4 py-1 text-zinc-50 focus:ring-2 focus:ring-primary focus:ring-opacity-30 transition duration-200 placeholder:text-zinc-500"
 						min={1}
+						placeholder="730"
 						required
 					/>
 				</div>
@@ -167,7 +168,8 @@
 						type="number"
 						name="quantity"
 						id="quantity"
-						class="w-full h-10 rounded-xl bg-zinc-700 px-4 py-1 text-zinc-50 focus:ring-2 focus:ring-primary focus:ring-opacity-30 transition duration-200"
+						class="w-full h-10 rounded-xl bg-zinc-700 px-4 py-1 text-zinc-50 focus:ring-2 focus:ring-primary focus:ring-opacity-30 transition duration-200 placeholder:text-zinc-500"
+						placeholder="5"
 						min={1}
 						required
 					/>
@@ -186,11 +188,11 @@
 	</div>
 
 	{#if calculation}
-		<div class="p-20 pb-40 xl:px-0 space-y-10" id="calculation">
+		<div class="p-8 md:p-20 pb-20 md:pb-40 xl:px-0 space-y-10 w-full" id="calculation">
 			<h2 class="font-space-grotesk text-5xl font-bold">
 				Your Savings for
 				<span class="text-primary"> {userInput.productType}</span>
-				<span class="text-primary"> {userInput.usage}</span>:
+				<span class="text-primary break-words"> {userInput.usage}</span>:
 			</h2>
 
 			<p class="font-space-grotesk text-4xl">
