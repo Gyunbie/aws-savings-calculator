@@ -35,6 +35,48 @@
 		type: 'productType' | 'instanceFamily' | 'region' | 'savingsPlan' | 'service' | 'usage'
 	) {
 		userInput[type] = option;
+
+		let parent:
+			| 'productTypes'
+			| 'instanceFamilies'
+			| 'regions'
+			| 'savingsPlans'
+			| 'services'
+			| 'usages' = 'productTypes';
+
+		if (type === 'productType') {
+			parent = 'productTypes';
+		} else if (type === 'instanceFamily') {
+			parent = 'instanceFamilies';
+		} else if (type === 'region') {
+			parent = 'regions';
+		} else if (type === 'savingsPlan') {
+			parent = 'savingsPlans';
+		} else if (type === 'service') {
+			parent = 'services';
+		} else if (type === 'usage') {
+			parent = 'usages';
+		}
+
+		const filteredArray = savingsData.filter(
+			(savings) =>
+				(!userInput.productType || savings.product_type === userInput.productType) &&
+				(!userInput.instanceFamily || savings.instance_family === userInput.instanceFamily) &&
+				(!userInput.region || savings.region === userInput.region) &&
+				(!userInput.savingsPlan || savings.plan_description === userInput.savingsPlan) &&
+				(!userInput.service || savings.service_code === userInput.service) &&
+				(!userInput.usage || savings.usage_type === userInput.usage)
+		);
+
+		// Omit parent to not filter out the current selection
+		parsedData = {
+			...parsedData,
+			instanceFamilies: parseSavingData(filteredArray, 'instance_family'),
+			savingsPlans: parseSavingData(filteredArray, 'plan_description'),
+			services: parseSavingData(filteredArray, 'service_code'),
+			usages: parseSavingData(filteredArray, 'usage_type'),
+			[parent]: parsedData[parent]
+		};
 	}
 
 	let calculation: Calculation | null;
@@ -68,26 +110,6 @@
 				calculationElement?.scrollIntoView({ behavior: 'smooth' });
 			}, 10);
 		}
-	}
-
-	$: {
-		const filteredArray = savingsData.filter(
-			(savings) =>
-				(!userInput.productType || savings.product_type === userInput.productType) &&
-				(!userInput.instanceFamily || savings.instance_family === userInput.instanceFamily) &&
-				(!userInput.region || savings.region === userInput.region) &&
-				(!userInput.savingsPlan || savings.plan_description === userInput.savingsPlan) &&
-				(!userInput.service || savings.service_code === userInput.service) &&
-				(!userInput.usage || savings.usage_type === userInput.usage)
-		);
-
-		parsedData = {
-			...parsedData,
-			instanceFamilies: parseSavingData(filteredArray, 'instance_family'),
-			savingsPlans: parseSavingData(filteredArray, 'plan_description'),
-			services: parseSavingData(filteredArray, 'service_code'),
-			usages: parseSavingData(filteredArray, 'usage_type')
-		};
 	}
 </script>
 
