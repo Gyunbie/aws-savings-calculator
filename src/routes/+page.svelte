@@ -83,7 +83,7 @@
 
 		parsedData = {
 			...parsedData,
-			regions: parseSavingData(filteredArray, 'region'),
+			instanceFamilies: parseSavingData(filteredArray, 'instance_family'),
 			savingsPlans: parseSavingData(filteredArray, 'plan_description'),
 			services: parseSavingData(filteredArray, 'service_code'),
 			usages: parseSavingData(filteredArray, 'usage_type')
